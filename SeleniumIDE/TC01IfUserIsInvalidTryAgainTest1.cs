@@ -21,7 +21,9 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
     public void SetUp()
     {
-        driver = new ChromeDriver();
+        var options = new ChromeOptions();
+        options.AddArgument("--headless=new");
+        driver = new ChromeDriver(options);
         js = (IJavaScriptExecutor)driver;
         vars = new Dictionary<string, object>();
     }
@@ -30,6 +32,7 @@ public class TC01IfUserIsInvalidTryAgainTest
     protected void TearDown()
     {
         driver.Quit();
+        driver.Dispose();
     }
 
     [Test]
